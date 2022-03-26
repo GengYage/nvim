@@ -1,164 +1,36 @@
-local windline = require("windline")
-local helper = require("windline.helpers")
-local b_components = require("windline.components.basic")
-local state = _G.WindLine.state
+require('wlsample.vscode')
+local lsp_comps = require('windline.components.lsp')
 
-local lsp_comps = require("windline.components.lsp")
-local git_comps = require("windline.components.git")
-
-local hl_list = {
-    Black = { "white", "black" },
-    White = { "black", "white" },
-    Inactive = { "InactiveFg", "InactiveBg" },
-    Active = { "ActiveFg", "ActiveBg" },
-}
 local basic = {}
 
-local breakpoint_width = 90
-basic.divider = { b_components.divider, "" }
-basic.bg = { " ", "StatusLine" }
-
-local colors_mode = {
-    Normal = { "blue", "black" },
-    Insert = { "green", "black" },
-    Visual = { "yellow", "black" },
-    Replace = { "blue_light", "black" },
-    Command = { "magenta", "black" },
-}
-
-basic.vi_mode = {
-    name = "vi_mode",
-    hl_colors = colors_mode,
-    text = function()
-        return { { "  ", state.mode[2] } }
-    end,
-}
-
 basic.lsp_diagnos = {
-    name = "diagnostic",
+    name = 'diagnostic',
     hl_colors = {
-        red = { "red", "black" },
-        yellow = { "yellow", "black" },
-        blue = { "blue", "black" },
+        red_text = {'red', 'black'}
     },
-    width = breakpoint_width,
-    text = function(bufnr)
-        if lsp_comps.check_lsp(bufnr) then
+    text = function(bufnr, winid, width)
+        if lsp_comps.check_lsp() then
             return {
-                { lsp_comps.lsp_error({ format = "  %s", show_zero = true }), "red" },
-                { lsp_comps.lsp_warning({ format = "  %s", show_zero = true }), "yellow" },
-                { lsp_comps.lsp_hint({ format = "  %s", show_zero = true }), "blue" },
+
+                { '[ lsp: ', 'red_text' },
+                -- red_text define in hl_colors. It make easy cache value first
+                -- because text function run multiple time on redraw
+
+                { lsp_comps.lsp_name() , 'IncSearch'},
+                -- it use a hightlight group IncSearch
+
+                -- but you can create a hightlight on child component too
+                { lsp_comps.lsp_error({ format = '  %s' }), {'red','black'} },
+
+                { lsp_comps.lsp_warning({ format = '  %s' }), {'yellow',''} },
+                -- it have same background black with the previous component
+
+                { lsp_comps.lsp_hint({ format = '  %s' }), {'', 'blue'} },
+                -- it have same foreground yellow with the previous component
+
+                { ' ] ' },
             }
         end
-        return ""
+        return ''
     end,
 }
-basic.file = {
-    name = "file",
-    hl_colors = {
-        default = hl_list.Black,
-        white = { "white", "black" },
-        magenta = { "magenta", "black" },
-    },
-    text = function(_, _, width)
-        if width > breakpoint_width then
-            return {
-                { b_components.cache_file_name("[No Name]", "unique"), "magenta" },
-                { b_components.line_col_lua, "white" },
-                { b_components.progress_lua, "" },
-                { " ", "" },
-                { b_components.file_modified(" "), "magenta" },
-            }
-        else
-            return {
-                { b_components.cache_file_name("[No Name]", "unique"), "magenta" },
-                { " ", "" },
-                { b_components.file_modified(" "), "magenta" },
-            }
-        end
-    end,
-}
-basic.file_right = {
-    hl_colors = {
-        default = hl_list.Black,
-        white = { "white", "black" },
-        magenta = { "magenta", "black" },
-    },
-    text = function(_, _, width)
-        if width < breakpoint_width then
-            return {
-                { b_components.line_col_lua, "white" },
-                { b_components.progress_lua, "" },
-            }
-        end
-    end,
-}
-
-local explorer = {
-    filetypes = { "NvimTree" },
-    active = {
-        { "  ", { "black", "red" } },
-        { helper.separators.slant_right, { "red", "black" } },
-    },
-    always_active = true,
-    show_last_status = true,
-}
-
-basic.lsp_name = {
-    width = breakpoint_width,
-    name = "lsp_name",
-    hl_colors = {
-        magenta = { "magenta", "black" },
-    },
-    text = function(bufnr)
-        if lsp_comps.check_lsp(bufnr) then
-            return {
-                { lsp_comps.lsp_name(), "magenta" },
-            }
-        end
-        return {
-            { b_components.cache_file_type({ icon = true }), "magenta" },
-        }
-    end,
-}
-
-local default = {
-    filetypes = { "default" },
-    active = {
-        basic.vi_mode,
-        basic.file,
-        basic.lsp_diagnos,
-        basic.divider,
-        basic.file_right,
-        basic.lsp_name,
-        basic.git,
-        { git_comps.git_branch(), { "magenta", "black" }, breakpoint_width },
-        { " ", hl_list.Black },
-    },
-    inactive = {
-        { b_components.full_file_name, hl_list.Inactive },
-        basic.file_name_inactive,
-        basic.divider,
-        basic.divider,
-        { b_components.line_col, hl_list.Inactive },
-        { b_components.progress, hl_list.Inactive },
-    },
-}
-
-windline.setup({
-    colors_name = function(colors)
-        colors.ActiveBg = "#282c34"
-        colors.InactiveBg = "#282c34"
-        colors.InactiveFg = "#bbbbbb"
-        colors.black = "#282c34"
-        colors.magenta = "#6677dd"
-        colors.yellow = "#7385e2"
-        colors.green = "#98c379"
-        return colors
-    end,
-    statuslines = {
-        default,
-        quickfix,
-        explorer,
-    },
-})
