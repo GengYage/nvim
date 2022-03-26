@@ -31,3 +31,6 @@ vim.api.nvim_set_keymap('x' , 'J', ':move \'<-2<CR>gv-gv\'', { noremap = true, s
 
 -- tab complete
 -- vim.api.nvim_set_keymap('i' , '<expr><TAB>', 'pumvisible() ? \"<C-n>\" : \"<TAB>\"', { noremap = true, silent = true })
+
+
+vim.api.nvim_set_keymap("n", "==", "<cmd>Neoformat<CR>", { noremap = true, silent = true })

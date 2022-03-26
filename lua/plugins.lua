@@ -23,6 +23,9 @@ return require('packer').startup(function()
 
   use "windwp/nvim-autopairs"
 
+  -- auto save
+  use "Pocco81/AutoSave.nvim"
+
   -- status line
   use({
       "windwp/windline.nvim",
@@ -55,8 +58,8 @@ return require('packer').startup(function()
 
   -- circles
   use {
-    "projekt0n/circles.nvim",
-    requires = {{"kyazdani42/nvim-web-devicons"}, {"kyazdani42/nvim-tree.lua", opt = true}}
+      "projekt0n/circles.nvim",
+      requires = {{"kyazdani42/nvim-web-devicons"}, {"kyazdani42/nvim-tree.lua", opt = true}}
   }
 
   -- git
@@ -81,8 +84,17 @@ return require('packer').startup(function()
   -- treesitter config
   use({
       "nvim-treesitter/nvim-treesitter",
+      requires = {
+        "p00f/nvim-ts-rainbow"
+      },
       config = function()
           require("configs.treesitter")
       end,
   })
+  use {
+    "sbdchd/neoformat",
+    config = function()
+        require("configs.neoformat")
+    end
+  }
 end)
