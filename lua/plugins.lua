@@ -18,6 +18,10 @@ return require('packer').startup(function()
   use 'saadparwaiz1/cmp_luasnip'
   -- Snippets plugin
   use 'L3MON4D3/LuaSnip' 
+  -- Lsp ui
+  use "tami5/lspsaga.nvim"
+
+  use "windwp/nvim-autopairs"
 
   -- auto comment
   use {
@@ -59,4 +63,19 @@ return require('packer').startup(function()
     end
   }
 
+  -- termial integration
+  use({
+      "akinsho/nvim-toggleterm.lua",
+      config = function()
+          require("configs/term")
+      end,
+  })
+
+  -- treesitter config
+  use({
+      "nvim-treesitter/nvim-treesitter",
+      config = function()
+          require("confifs/treesitter")
+      end,
+  })
 end)
