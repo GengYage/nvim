@@ -23,6 +23,13 @@ return require('packer').startup(function()
 
   use "windwp/nvim-autopairs"
 
+  -- status line
+  use({
+      "windwp/windline.nvim",
+      config = function()
+          require("configs.windline")
+      end,
+  })
   -- auto comment
   use {
     'numToStr/Comment.nvim',
@@ -67,7 +74,7 @@ return require('packer').startup(function()
   use({
       "akinsho/nvim-toggleterm.lua",
       config = function()
-          require("configs/term")
+          require("configs.term")
       end,
   })
 
@@ -75,7 +82,7 @@ return require('packer').startup(function()
   use({
       "nvim-treesitter/nvim-treesitter",
       config = function()
-          require("confifs/treesitter")
+          require("configs.treesitter")
       end,
   })
 end)
