@@ -26,11 +26,10 @@ vim.api.nvim_set_keymap('n' , '<TAB>', ':bnext<CR>', { noremap = true, silent = 
 vim.api.nvim_set_keymap('n' , '<S-TAB>', ':bprevious<CR>', { noremap = true, silent = true })
 
 -- move line
-vim.api.nvim_set_keymap('x' , 'K', ':move \'>+1<CR>gv-gv\'', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('x' , 'J', ':move \'<-2<CR>gv-gv\'', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('x' , 'J', ':move \'>+1<CR>gv-gv\'', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('x' , 'K', ':move \'<-2<CR>gv-gv\'', { noremap = true, silent = true })
 
 -- tab complete
 -- vim.api.nvim_set_keymap('i' , '<expr><TAB>', 'pumvisible() ? \"<C-n>\" : \"<TAB>\"', { noremap = true, silent = true })
-
 
 vim.api.nvim_set_keymap("n", "==", "<cmd>Neoformat<CR>", { noremap = true, silent = true })
