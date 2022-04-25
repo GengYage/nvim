@@ -1,35 +1,42 @@
+local opts = { noremap = true, silent = true }
+
+-- Shorten function name
+local keymap = vim.api.nvim_set_keymap
+
 -- set leader
-vim.api.nvim_set_keymap('n' , '<Space>', '<NOP>', { noremap = true, silent = true })
+keymap('n' , '<Space>', '<NOP>', opts)
 vim.g.mapleader = ' '
+vim.g.maplocalleader = ';'
 
 -- set for hlsearch
-vim.api.nvim_set_keymap('n' , '<Leader>h', 'set hlsearch!<CR>', { noremap = true, silent = true })
+keymap('n' , '<Leader>l', 'set hlsearch!<CR>', opts)
 -- set for explore
-vim.api.nvim_set_keymap('n' , '<Leader>e', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
+keymap('n' , '<Leader>e', ':NvimTreeToggle<CR>', opts)
+keymap('n' , '<Leader>f', ':NvimTreeFindFile<CR>', opts)
+
+--save buffer
+keymap('n', '<Leader>w', ':w<CR>', opts)
 
 -- better windows move
-vim.api.nvim_set_keymap('n' , '<C-h>', '<C-w>h', { silent = true })
-vim.api.nvim_set_keymap('n' , '<C-j>', '<C-w>j', { silent = true })
-vim.api.nvim_set_keymap('n' , '<C-k>', '<C-w>k', { silent = true })
-vim.api.nvim_set_keymap('n' , '<C-l>', '<C-w>l', { silent = true })
+keymap('n' , '<C-h>', '<C-w>h', opts)
+keymap('n' , '<C-j>', '<C-w>j', opts)
+keymap('n' , '<C-k>', '<C-w>k', opts)
+keymap('n' , '<C-l>', '<C-w>l', opts)
 
 -- beter indenting
-vim.api.nvim_set_keymap('v' , '<', '<gv', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('v' , '>', '>gv', { noremap = true, silent = true })
+keymap('v' , '<', '<gv', opts)
+keymap('v' , '>', '>gv', opts)
 
 -- jk to esc
-vim.api.nvim_set_keymap('i' , 'jk', '<Esc>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('i' , 'jj', '<Esc>', { noremap = true, silent = true })
+keymap('i' , 'jk', '<Esc>', opts)
+keymap('i' , 'jj', '<Esc>', opts)
 
 -- tab switch
-vim.api.nvim_set_keymap('n' , '<TAB>', ':bnext<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n' , '<S-TAB>', ':bprevious<CR>', { noremap = true, silent = true })
+keymap('n' , '<TAB>', ':bnext<CR>', opts)
+keymap('n' , '<S-TAB>', ':bprevious<CR>', opts)
 
--- move line
-vim.api.nvim_set_keymap('x' , 'J', ':move \'>+1<CR>gv-gv\'', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('x' , 'K', ':move \'<-2<CR>gv-gv\'', { noremap = true, silent = true })
+-- Move text up and down
+keymap("v", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
+keymap("v", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
 
--- tab complete
--- vim.api.nvim_set_keymap('i' , '<expr><TAB>', 'pumvisible() ? \"<C-n>\" : \"<TAB>\"', { noremap = true, silent = true })
-
-vim.api.nvim_set_keymap("n", "==", "<cmd>Neoformat<CR>", { noremap = true, silent = true })
+keymap("n", "==", "<cmd>Neoformat<CR>", opts)
