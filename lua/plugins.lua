@@ -28,9 +28,6 @@ return require('packer').startup(function(use)
   -- status line
   use {
       "windwp/windline.nvim",
-      config = function()
-          require("configs.windline")
-      end,
   }
   -- auto comment
   use {
@@ -46,7 +43,6 @@ return require('packer').startup(function(use)
     requires = {
       'kyazdani42/nvim-web-devicons', -- optional, for file icon
     },
-    config = function() require'nvim-tree'.setup {} end
   }
 
   -- using packer.nvim
@@ -68,17 +64,11 @@ return require('packer').startup(function(use)
     requires = {
       'nvim-lua/plenary.nvim'
     },
-    config = function()
-      require('gitsigns').setup()
-    end
   }
 
   -- termial integration
   use {
       "akinsho/nvim-toggleterm.lua",
-      config = function()
-          require("configs.term")
-      end,
   }
 
   -- treesitter config
@@ -87,19 +77,23 @@ return require('packer').startup(function(use)
       requires = {
         "p00f/nvim-ts-rainbow"
       },
-      config = function()
-          require("configs.treesitter")
-      end,
   }
 
   use {
     "sbdchd/neoformat",
-    config = function()
-        require("configs.neoformat")
-    end
   }
 
-  if PACKER_BOOTSTRAP then
-    require("packer").sync()
-  end
+  -- telescoop
+  use {
+    'nvim-telescope/telescope.nvim',
+    requires = { {'nvim-lua/plenary.nvim'} },
+  }
+  use {
+    "nvim-telescope/telescope-fzf-native.nvim",
+    run = "make",
+  }
+  use "nvim-telescope/telescope-ui-select.nvim"
+  use "nvim-telescope/telescope-live-grep-raw.nvim"
+  use "MattesGroeger/vim-bookmarks"
+  use "tom-anders/telescope-vim-bookmarks.nvim"
 end)

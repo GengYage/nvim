@@ -1,10 +1,5 @@
-require 'options'
-require 'plugins'
-require 'theme/github'
-require 'configs/auto-cmp'
-require 'configs/tree'
-require 'configs/bufferline'
-require 'configs/lua-server'
-require 'configs/circles'
-require 'configs/git'
-require 'keymapping'
+require "options"
+require "plugins"
+require "theme/github"
+require "configs/init"
+require "keymapping"

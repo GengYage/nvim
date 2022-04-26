@@ -12,7 +12,7 @@ vim.g.maplocalleader = ';'
 keymap('n' , '<Leader>l', 'set hlsearch!<CR>', opts)
 -- set for explore
 keymap('n' , '<Leader>e', ':NvimTreeToggle<CR>', opts)
-keymap('n' , '<Leader>f', ':NvimTreeFindFile<CR>', opts)
+keymap('n' , '<Leader>t', ':NvimTreeFindFile<CR>', opts)
 
 --save buffer
 keymap('n', '<Leader>w', ':w<CR>', opts)
