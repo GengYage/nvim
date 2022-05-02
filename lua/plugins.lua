@@ -20,6 +20,8 @@ return require('packer').startup(function(use)
   -- Lsp ui
   use "tami5/lspsaga.nvim"
 
+  use "simrat39/rust-tools.nvim"
+
   use "windwp/nvim-autopairs"
 
   -- auto save

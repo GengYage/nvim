@@ -9,7 +9,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ';'
 
 -- set for hlsearch
-keymap('n' , '<Leader>l', 'set hlsearch!<CR>', opts)
+keymap('n' , '<Leader>l', 'set nohlsearch!<CR>', opts)
 -- set for explore
 keymap('n' , '<Leader>e', ':NvimTreeToggle<CR>', opts)
 keymap('n' , '<Leader>t', ':NvimTreeFindFile<CR>', opts)

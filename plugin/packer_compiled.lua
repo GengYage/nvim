@@ -175,6 +175,11 @@ _G.packer_plugins = {
     path = "/home/isbest/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
+  ["rust-tools.nvim"] = {
+    loaded = true,
+    path = "/home/isbest/.local/share/nvim/site/pack/packer/start/rust-tools.nvim",
+    url = "https://github.com/simrat39/rust-tools.nvim"
+  },
   ["telescope-fzf-native.nvim"] = {
     loaded = true,
     path = "/home/isbest/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim",
@@ -206,7 +211,6 @@ _G.packer_plugins = {
     url = "https://github.com/MattesGroeger/vim-bookmarks"
   },
   ["windline.nvim"] = {
-    config = { "\27LJ\2\n0\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\21configs.windline\frequire\0" },
     loaded = true,
     path = "/home/isbest/.local/share/nvim/site/pack/packer/start/windline.nvim",
     url = "https://github.com/windwp/windline.nvim"
@@ -218,10 +222,6 @@ time([[Defining packer_plugins]], false)
 time([[Config for Comment.nvim]], true)
 try_loadstring("\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\fComment\frequire\0", "config", "Comment.nvim")
 time([[Config for Comment.nvim]], false)
--- Config for: windline.nvim
-time([[Config for windline.nvim]], true)
-try_loadstring("\27LJ\2\n0\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\21configs.windline\frequire\0", "config", "windline.nvim")
-time([[Config for windline.nvim]], false)
 if should_profile then save_profiles() end
 
 end)
