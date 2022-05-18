@@ -1,13 +1,19 @@
 require("github-theme").setup({
-  theme_style = "dimmed",
+  theme_style = "light_colorblind",
+  function_style = "italic",
+  sidebars = {"qf", "vista_kind", "terminal", "packer"},
   transparent = true,
-  hide_inactive_statusline = false,
+
+  -- Change the "hint" color to the "orange" color, and make the "error" color bright red
+  colors = {hint = "orange", error = "#ff0000"},
 
   -- Overwrite the highlight groups
-  overrides = function()
+  overrides = function(c)
     return {
-      Visual = { style = 'inverse' },
-      Search = { style = 'inverse' },
+      htmlTag = {fg = c.red, bg = "#282c34", sp = c.hint, style = "underline"},
+      DiagnosticHint = {link = "LspDiagnosticsDefaultHint"},
+      -- this will remove the highlight groups
+      TSField = {},
     }
   end
 })
