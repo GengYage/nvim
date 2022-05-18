@@ -1,4 +1,4 @@
-local colorscheme = "github_light"
+local colorscheme = "github_dimmed"
 
 local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
 if not status_ok then
@@ -10,6 +10,6 @@ if colorscheme == "onedark" then
   require "user.themes.onedark"
 end
 
-if colorscheme == "github_light" then
+if colorscheme == "github_dimmed" then
   require "user.themes.github-nvim-theme"
 end

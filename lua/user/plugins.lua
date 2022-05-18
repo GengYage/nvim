@@ -211,21 +211,19 @@ return packer.startup(function(use)
   -- Colorschemes
   use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
   -- use "martinsione/darkplus.nvim"
-  -- use "navarasu/onedark.nvim"
+  use "navarasu/onedark.nvim"
   use({
     "catppuccin/nvim",
     as = "catppuccin"
   })
   use {
     "projekt0n/github-nvim-theme",
-    tag = "v0.0.4",
   }
 
   -- use "folke/tokyonight.nvim"
   use "kyazdani42/nvim-tree.lua" -- file explore
   use {
     "akinsho/bufferline.nvim", -- tab
-    tag = "v1.2.0",
   }
   -- use "moll/vim-bbye"
   use "nvim-lualine/lualine.nvim" -- status line
