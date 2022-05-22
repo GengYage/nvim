@@ -1,10 +1,22 @@
-require('onedark').setup {
+-- TODO: 改变theme不生效
+local status_ok, onedark = pcall(require, "onedark")
+if not status_ok then
+  vim.notify("onedark theme not found!")
+  return
+end
+
+-- NOTE: if use 'light' theme, you  should change backgournd and style to 'light'
+-- vim.o.background='dark'
+vim.o.background='light'
+onedark.setup {
   -- Main options --
-  style = 'warm', -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
-  transparent = true, -- Show/hide background
+  style = 'light', -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
+  transparent = false,  -- Show/hide background
   term_colors = true, -- Change terminal color as per the selected theme style
-  ending_tildes = true, -- Show the end-of-buffer tildes. By default they are hidden
-  cmp_itemkind_reverse = true, -- reverse item kind highlights in cmp menu
+  ending_tildes = false, -- Show the end-of-buffer tildes. By default they are hidden
+  -- toggle theme style ---
+  toggle_style_list = {'light', 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer'}, -- List of styles to toggle between
+  toggle_style_key = '<leader>ts', -- Default keybinding to toggle
 
   -- Change code style ---
   -- Options are italic, bold, underline, none
@@ -12,28 +24,27 @@ require('onedark').setup {
   code_style = {
     comments = 'italic',
     keywords = 'none',
-    functions = 'none',
+    functions = 'bold',
     strings = 'none',
     variables = 'none'
   },
+
   -- Custom Highlights --
-  colors = {
-    bright_orange = "#ff8800", -- define a new color
-    green = '#00ffaa', -- redefine an existing color
-  },
-
-  highlights = {
-    TSKeyword = { fg = '$green' },
-    TSString = { fg = '$bright_orange', bg = '#00ff00', fmt = 'bold' },
-    TSFunction = { fg = '#0000ff', sp = '$cyan', fmt = 'underline,italic' },
-  },
-
-  diagnostics = {
-    darker = true, -- darker colors for diagnostic
-    undercurl = true, -- use undercurl instead of underline for diagnostics
-    background = true, -- use background color for virtual text
-  },
-
+  colors = {}, -- Override default colors
+  highlights = {} -- Override highlight groups
 }
 
-require('onedark').load()
+onedark.load()
+
+-- vim.cmd [[
+-- let g:onedark_config = {
+--   \ 'style': 'light',
+--   \ 'toggle_style_key': '<leader>ts',
+--   \ 'ending_tildes': v:true,
+--   \ 'diagnostics': {
+--     \ 'darker': v:false,
+--     \ 'background': v:false,
+--   \ },
+-- \ }
+-- colorscheme onedark
+-- ]]

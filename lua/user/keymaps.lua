@@ -6,7 +6,7 @@ local keymap = vim.api.nvim_set_keymap
 --Remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
-vim.g.maplocalleader = ";"
+vim.g.maplocalleader = " "
 
 -- Modes normal_mode = "n",
 --   insert_mode = "i",
@@ -42,6 +42,10 @@ keymap("n", "<leader>d", ":bdelete<cr>", opts)
 keymap("n", "<leader>D", ":bdelete<cr>", opts)
 -- exit whole program
 keymap("n", "ZZ", ":lua require('user.utils').SaveAndExit()<cr>", opts)
+-- remap macro record key
+keymap("n", "Q", "q", opts)
+-- cancel q
+keymap("n", "q", "<Nop>", opts)
 
 -- center cursor
 keymap("n", "n", "nzzzv", opts)
@@ -74,13 +78,8 @@ keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
 keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
 
 -- Insert --
--- jk to esc
-keymap('i' , 'jk', '<Esc>', opts)
-keymap('i' , 'jj', '<Esc>', opts)
-
--- tab switch
-keymap('n' , '<TAB>', ':bnext<CR>', opts)
-keymap('n' , '<S-TAB>', ':bprevious<CR>', opts)
+-- Press jl fast to enter
+keymap("i", "jk", "<ESC>", opts)
 
 -- Visual --
 -- Stay in indent mode
@@ -140,8 +139,7 @@ keymap("n", "K", "<cmd>lua require'dapui'.eval()<cr>", opts)
 
 -- git diff view
 keymap('n', '<leader>j', ']c', opts)
-keymap('n', '<leader>k','[c', opts)
-
+keymap('n', '<leader>k', '[c', opts)
 
 -- unit test
 keymap("n", "<leader>rr", "<cmd>UltestNearest<cr>", opts)
@@ -154,9 +152,14 @@ keymap("n", "gcf", "<cmd>Dox<cr>", opts)
 keymap("n", "<leader>rf", ":%SnipRun<cr>", opts)
 keymap("v", "<leader>rs", ":%SnipRun<cr>", opts)
 
--- for spell check
+-- spell check
 vim.cmd(
 [[
   nnoremap <leader>s :call search('\w\>', 'c')<CR>a<C-X><C-S>
 ]])
 
+-- gtags
+-- find functions calling this function
+keymap("n", "<leader>U", ":lua require('user.utils').GtagsRefernce()<cr>", opts)
+-- find definition
+keymap("n", "<leader>T", ":lua require('user.utils').GtagsText()<cr>", opts)

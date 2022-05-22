@@ -80,7 +80,7 @@ telescope.setup {
   defaults = {
     buffer_previewer_maker = new_maker,
 
-    prompt_prefix = " ",
+    prompt_prefix = " ",
     selection_caret = " ",
     path_display = {
       shorten= {

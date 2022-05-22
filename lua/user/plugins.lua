@@ -151,6 +151,9 @@ return packer.startup(function(use)
   use "saadparwaiz1/cmp_luasnip" -- snippet completions
   use "hrsh7th/cmp-nvim-lsp"
   use "hrsh7th/cmp-nvim-lua"
+  -- use "quangnguyen30192/cmp-nvim-tags"
+  use "jsfaint/gen_tags.vim"
+  use "ray-x/cmp-treesitter"
   use "f3fora/cmp-spell" -- spell check
   -- use "github/copilot.vim"  -- Copilot setup,
   -- use {
@@ -211,19 +214,21 @@ return packer.startup(function(use)
   -- Colorschemes
   use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
   -- use "martinsione/darkplus.nvim"
-  use "navarasu/onedark.nvim"
+  -- use "navarasu/onedark.nvim"
   use({
     "catppuccin/nvim",
     as = "catppuccin"
   })
   use {
     "projekt0n/github-nvim-theme",
+    tag = "v0.0.4",
   }
 
   -- use "folke/tokyonight.nvim"
   use "kyazdani42/nvim-tree.lua" -- file explore
   use {
     "akinsho/bufferline.nvim", -- tab
+    tag = "v1.2.0",
   }
   -- use "moll/vim-bbye"
   use "nvim-lualine/lualine.nvim" -- status line
@@ -235,8 +240,8 @@ return packer.startup(function(use)
   --   "kevinhwang91/nvim-hlslens", -- highlight search
   --   disable = true,
   -- }
-  -- use "kevinhwang91/nvim-bqf" -- better quick fix, use trouble instead
-  -- use "RRethy/vim-illuminate" -- highlight undercursor word
+  use "kevinhwang91/nvim-bqf" -- better quick fix
+  use "RRethy/vim-illuminate" -- highlight undercursor word
   -- use "lewis6991/spellsitter.nvim" -- spell checker
   use "folke/todo-comments.nvim" -- todo comments
   -- use "liuchengxu/vista.vim"     -- outline

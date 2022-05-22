@@ -41,8 +41,7 @@ local options = {
   spell = false,                            -- add spell support
   spelllang = { 'en_us' },                 -- support which languages?
   diffopt="vertical,filler,internal,context:4",                      -- vertical diff split view
-  listchars = { space = '·', eol = '↵'},
-  list = true,
+  cscopequickfix="s-,c-,d-,i-,t-,e-",       -- cscope output to quickfix window
 }
 
 vim.opt.shortmess:append "c"
