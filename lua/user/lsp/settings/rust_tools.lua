@@ -39,7 +39,7 @@ return {
 
       -- whether to show variable name before type hints with the inlay hints or not
       -- default: false
-      show_variable_name = false,
+      show_variable_name = true,
 
       -- prefix for parameter hints
       -- default: "<-"
@@ -82,7 +82,7 @@ return {
 
       -- whether the hover action window gets automatically focused
       -- default: false
-      auto_focus = false,
+      auto_focus = true,
     },
 
     -- settings for showing the crate graph based on graphviz and the dot

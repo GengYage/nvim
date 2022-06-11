@@ -163,3 +163,6 @@ vim.cmd(
 keymap("n", "<leader>U", ":lua require('user.utils').GtagsRefernce()<cr>", opts)
 -- find definition
 keymap("n", "<leader>T", ":lua require('user.utils').GtagsText()<cr>", opts)
+
+-- code format
+keymap("n", "==", "<cmd>Format<CR>", opts)

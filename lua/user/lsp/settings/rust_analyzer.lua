@@ -5,9 +5,11 @@ return {
             assist = {
                 importGranularity = "module",
                 importPrefix = "self",
+                exprFillDefault = "todo",
             },
             cargo = {
-                loadOutDirsFromCheck = true
+                autoReload = true,
+                loadOutDirsFromCheck = true,
             },
             procMacro = {
                 enable = true
