@@ -1,0 +1,5 @@
+require('configs.lsp.installer')
+require('configs.lsp.cmp')
+require('configs.lsp.config')
+require('configs.lsp.lspline')
+require('configs.lsp.lspprogress')
